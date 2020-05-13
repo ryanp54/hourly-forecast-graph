@@ -1,27 +1,31 @@
 import React, { useState, useEffect } from 'react';
-import getWeather from './nws-api';
+
+import { getForecast } from './nws-api';
+import { ForecastChart } from './chart';
 
 
-function App() {
-  const [weather, setWeather] = useState();
+export default function App() {
+  const [forecast, setForecast] = useState();
   const [location, setLocation] = useGeolocation();
 
   const onLocationChange = () => {
     if (location) {
-      getWeather(location).then(
-        (forecast) => { debugger }
-      );
+      getForecast(location)
+        .then(setForecast);
     }
   };
 
   useEffect(onLocationChange, [location]);
 
   return (
-    <div></div>
+    <ForecastChart
+      forecast={forecast}
+      startTime={(new Date())}
+      endTime={(new Date(2020, 4, 18, 23))}
+    >
+    </ForecastChart>
   );
 }
-
-export default App;
 
 function useGeolocation() {
   const [location, setLocation] = useState();

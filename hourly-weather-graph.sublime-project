@@ -1,0 +1,9 @@
+{
+	"folders":
+	[
+		{
+			"path": "C:\\Coding\\hourly-weather-graph",
+			"folder_exclude_patterns": ["node_modules"]
+		}
+	]
+}
